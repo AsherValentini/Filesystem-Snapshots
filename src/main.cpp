@@ -1,6 +1,11 @@
 #include <iostream>
+#include "file_system.hpp"
+int main() {
 
-int main(){
-	std::cout<<"sanity check" << std::endl;
-	return 0;
+  FileSystem fileSystem_1;
+  FileSystem fileSystem_2;
+  FileSystem fileSystem_3;
+  std::cout << "sanity check" << std::endl;
+  return 0;
 }
+
