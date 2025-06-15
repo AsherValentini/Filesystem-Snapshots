@@ -1,3 +1,0 @@
-/home/asher/cpp-projects/Filesystem-Snapshots/build/CMakeFiles/prog.dir
-/home/asher/cpp-projects/Filesystem-Snapshots/build/CMakeFiles/edit_cache.dir
-/home/asher/cpp-projects/Filesystem-Snapshots/build/CMakeFiles/rebuild_cache.dir
