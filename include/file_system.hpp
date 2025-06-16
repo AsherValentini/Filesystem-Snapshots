@@ -14,7 +14,7 @@
 class FileSystem {
 
 public:
-  FileSystem() { std::cout << "[FileSystem] created with ID: \n"; }
+  FileSystem() : ID_(0) { std::cout << "[FileSystem]\n"; }
 
   void mkdir(const std::string& path) {
     auto it = fs_.find(path);
@@ -22,6 +22,7 @@ public:
       fs_[path];
     }
   }
+
   bool addFile(const std::string& path, const std::string& fileName, const std::string& content) {
     auto it = fs_.find(path);
 
@@ -51,10 +52,26 @@ public:
       return std::nullopt;
     }
   }
-  void snapShot() {}
-  void restore(std::uint8_t ID) {}
+  std::uint64_t snapShot() {
+    auto currentFS = fs_; // create a deep copy of the fs to store for later use
+    snapShots_[ID_] = currentFS;
+    return ID_++;
+  }
+
+  bool restore(std::uint64_t ID) {
+    auto it = snapShots_.find(ID);
+    if (it != snapShots_.end()) {
+
+      fs_ = snapShots_[ID];
+      return true;
+    } else {
+      return false;
+    }
+  }
+  friend std::ostream& operator<<(std::ostream& os, const FileSystem& f);
 
 private:
   std::unordered_map<std::string, std::vector<File>> fs_;
   std::unordered_map<std::uint64_t, std::unordered_map<std::string, std::vector<File>>> snapShots_;
+  std::uint64_t ID_;
 };
